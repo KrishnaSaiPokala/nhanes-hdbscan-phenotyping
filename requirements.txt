@@ -1,0 +1,13 @@
+numpy>=1.23
+pandas>=1.5
+matplotlib>=3.7
+scikit-learn>=1.3
+scipy>=1.10
+pytest>=7
+ruff>=0.4
+black>=24
+# Optional full-pipeline dependencies:
+# umap-learn>=0.5
+# hdbscan>=0.8
+# statsmodels>=0.14
+# pyyaml>=6
