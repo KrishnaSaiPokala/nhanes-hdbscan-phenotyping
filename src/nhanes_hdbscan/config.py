@@ -12,7 +12,7 @@ PHENOTYPE_NAMES = {
     -1: "Noise / outlier group",
     0: "Lipid-prediabetes metabolic-risk tendency",
     1: "Lower-glycemic central-adiposity tendency",
-    2: "Smaller blood-pressure / renal-risk phenotype",
+    2: "Higher blood-pressure / renal-risk tendency",
 }
 
 BIOMARKER_COLUMNS = [
@@ -85,4 +85,4 @@ class ResearchConfig:
 
 
 # Backward-compatible alias for earlier release code and notebooks.
-PortfolioConfig = ResearchConfig
+ResearchConfig = ResearchConfig

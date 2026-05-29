@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from nhanes_hdbscan.config import PortfolioConfig
+from nhanes_hdbscan.config import ResearchConfig
 from nhanes_hdbscan.results import (
     ablation_summary,
     biomarker_z_matrix,
@@ -52,7 +52,7 @@ def annotate_bars(ax: plt.Axes, fmt: str) -> None:
             )
 
 
-def plot_pipeline(figures_dir: Path, cfg: PortfolioConfig) -> Path:
+def plot_pipeline(figures_dir: Path, cfg: ResearchConfig) -> Path:
     steps = [
         "Public NHANES\nXPT files",
         "Adult cohort\nobjective biomarkers",
@@ -87,7 +87,7 @@ def plot_pipeline(figures_dir: Path, cfg: PortfolioConfig) -> Path:
     return save(fig, figures_dir / "pipeline_diagram.png", cfg.dpi)
 
 
-def plot_cluster_sizes(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig) -> Path:
+def plot_cluster_sizes(data: dict[str, Any], figures_dir: Path, cfg: ResearchConfig) -> Path:
     df = phenotype_profiles(data)
     fig, ax = plt.subplots(figsize=(11, 6))
     ax.bar(df["display_name"], df["n"])
@@ -98,7 +98,7 @@ def plot_cluster_sizes(data: dict[str, Any], figures_dir: Path, cfg: PortfolioCo
     return save(fig, figures_dir / "cluster_size_distribution.png", cfg.dpi)
 
 
-def plot_stability(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig) -> Path:
+def plot_stability(data: dict[str, Any], figures_dir: Path, cfg: ResearchConfig) -> Path:
     s = data["stability"]
     vals = {
         "Mean ARI": s["mean_pairwise_ARI"],
@@ -115,7 +115,7 @@ def plot_stability(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig
     return save(fig, figures_dir / "multi_seed_stability_metrics.png", cfg.dpi)
 
 
-def plot_seed_quality(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig) -> Path:
+def plot_seed_quality(data: dict[str, Any], figures_dir: Path, cfg: ResearchConfig) -> Path:
     df = final_seed_runs(data)
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(df["seed"].astype(str), df["noise_rate"], marker="o", label="Noise rate")
@@ -127,7 +127,7 @@ def plot_seed_quality(data: dict[str, Any], figures_dir: Path, cfg: PortfolioCon
     return save(fig, figures_dir / "seed_level_quality_metrics.png", cfg.dpi)
 
 
-def plot_biomarker_heatmap(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig) -> Path:
+def plot_biomarker_heatmap(data: dict[str, Any], figures_dir: Path, cfg: ResearchConfig) -> Path:
     mat = biomarker_z_matrix(data)
     fig, ax = plt.subplots(figsize=(13, 7))
     im = ax.imshow(mat.to_numpy(dtype=float), aspect="auto", cmap="coolwarm", vmin=-2, vmax=2)
@@ -147,7 +147,7 @@ def plot_biomarker_heatmap(data: dict[str, Any], figures_dir: Path, cfg: Portfol
     return save(fig, figures_dir / "phenotype_biomarker_heatmap.png", cfg.dpi)
 
 
-def plot_disease_lift(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig) -> Path:
+def plot_disease_lift(data: dict[str, Any], figures_dir: Path, cfg: ResearchConfig) -> Path:
     df = disease_enrichment(data)
     pivot = df.pivot_table(
         index="outcome", columns="display_name", values="lift_vs_overall", aggfunc="mean"
@@ -170,7 +170,7 @@ def plot_disease_lift(data: dict[str, Any], figures_dir: Path, cfg: PortfolioCon
     return save(fig, figures_dir / "disease_enrichment_lift_heatmap.png", cfg.dpi)
 
 
-def plot_ablation(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig) -> Path:
+def plot_ablation(data: dict[str, Any], figures_dir: Path, cfg: ResearchConfig) -> Path:
     df = ablation_summary(data)
     fig, ax = plt.subplots(figsize=(11, 7))
     col = "ARI_vs_full_reference_mean"
@@ -185,7 +185,7 @@ def plot_ablation(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig)
     return save(fig, figures_dir / "ablation_ari_vs_full_reference.png", cfg.dpi)
 
 
-def plot_replication(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig) -> Path:
+def plot_replication(data: dict[str, Any], figures_dir: Path, cfg: ResearchConfig) -> Path:
     df = replication_matches(data)
     labels = [f"D{int(r.discovery_label)} → R{int(r.replication_label)}" for r in df.itertuples()]
     fig, ax = plt.subplots(figsize=(9, 6))
@@ -197,7 +197,7 @@ def plot_replication(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConf
     return save(fig, figures_dir / "replication_profile_correlations.png", cfg.dpi)
 
 
-def make_all_figures(data: dict[str, Any], cfg: PortfolioConfig) -> list[Path]:
+def make_all_figures(data: dict[str, Any], cfg: ResearchConfig) -> list[Path]:
     cfg.figures_dir.mkdir(parents=True, exist_ok=True)
     return [
         plot_pipeline(cfg.figures_dir, cfg),

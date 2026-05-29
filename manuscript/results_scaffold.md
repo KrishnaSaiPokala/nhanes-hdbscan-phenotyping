@@ -9,7 +9,7 @@ The final discovery analysis included 6,048 adults and identified 3 non-noise HD
 Phenotype -1 (Noise / outlier group) included 447 participants (7.4% of the analytic cohort). Top standardized drivers were: HDBSCAN noise label.
 Phenotype 0 (Lipid-prediabetes metabolic-risk tendency) included 2,998 participants (49.6% of the analytic cohort). Top standardized drivers were: wbc z=-0.17; albumin z=-0.07; mean_sbp z=-0.06; mean_dbp z=-0.05.
 Phenotype 1 (Lower-glycemic central-adiposity tendency) included 2,258 participants (37.3% of the analytic cohort). Top standardized drivers were: wbc z=0.20; albumin z=0.11; glucose z=-0.07; mean_dbp z=0.05.
-Phenotype 2 (Smaller blood-pressure / renal-risk phenotype) included 345 participants (5.7% of the analytic cohort). Top standardized drivers were: mean_sbp z=0.18; wbc z=0.15; mean_dbp z=0.12; rdw z=0.12.
+Phenotype 2 (Higher blood-pressure / renal-risk tendency) included 345 participants (5.7% of the analytic cohort). Top standardized drivers were: mean_sbp z=0.18; wbc z=0.15; mean_dbp z=0.12; rdw z=0.12.
 
 ## Ablation robustness
 
