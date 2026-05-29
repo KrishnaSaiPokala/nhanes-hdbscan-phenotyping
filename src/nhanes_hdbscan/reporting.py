@@ -1,4 +1,4 @@
-"""Markdown report generation for portfolio and manuscript scaffolds."""
+"""Markdown report generation for research and manuscript scaffolds."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ def num(x: float, digits: int = 3) -> str:
     return f"{float(x):.{digits}f}"
 
 
-def portfolio_markdown(data: dict[str, Any], figure_paths: list[Path]) -> str:
+def research_markdown(data: dict[str, Any], figure_paths: list[Path]) -> str:
     m = key_metrics(data)
     profiles = phenotype_profiles(data)
     enrich = disease_enrichment(data).sort_values("lift_vs_overall", ascending=False)
@@ -32,7 +32,7 @@ def portfolio_markdown(data: dict[str, Any], figure_paths: list[Path]) -> str:
     lines = [
         "# NHANES-HDBSCAN Cardiometabolic Phenotyping",
         "",
-        "Recruiter-facing, reproducible research software project for unsupervised cardiometabolic biomarker phenotyping in U.S. adults using public NHANES data.",
+        "Reproducible research software project for unsupervised cardiometabolic biomarker phenotyping in U.S. adults using public NHANES data.",
         "",
         "## Headline result",
         "",
@@ -43,9 +43,9 @@ def portfolio_markdown(data: dict[str, Any], figure_paths: list[Path]) -> str:
         f"- Mean pairwise NMI: **{num(m['nmi'], 4)}**",
         f"- Mean non-noise silhouette: **{num(m['silhouette'], 4)}**",
         "",
-        "## Why this is portfolio-grade",
+        "## Why this is reproducible research software",
         "",
-        "This repository demonstrates a complete applied ML/research workflow: public data, clinical feature engineering, unsupervised representation learning, density-based clustering, multi-seed stability analysis, feature-block ablations, temporal replication, post-hoc disease-burden characterization, and manuscript-style reporting.",
+        "This repository demonstrates a complete applied machine-learning and research workflow: public data, clinical feature engineering, unsupervised representation learning, density-based clustering, multi-seed stability analysis, feature-block ablations, temporal replication, post-hoc disease-burden characterization, and manuscript-style reporting.",
         "",
         "Disease labels, survey weights, and demographic/socioeconomic variables are not used to create the primary clusters. They are used only after clustering for interpretation and enrichment.",
         "",
@@ -167,11 +167,11 @@ def write_reports(data: dict[str, Any], cfg: PortfolioConfig, figure_paths: list
     cfg.docs_dir.mkdir(parents=True, exist_ok=True)
     cfg.manuscript_dir.mkdir(parents=True, exist_ok=True)
     cfg.summary_dir.mkdir(parents=True, exist_ok=True)
-    portfolio = cfg.docs_dir / "portfolio_results_summary.md"
+    research = cfg.docs_dir / "research_results_summary.md"
     manuscript = cfg.manuscript_dir / "results_scaffold.md"
     technical = cfg.summary_dir / "technical_summary.md"
-    text = portfolio_markdown(data, figure_paths)
-    portfolio.write_text(text, encoding="utf-8")
+    text = research_markdown(data, figure_paths)
+    research.write_text(text, encoding="utf-8")
     manuscript.write_text(manuscript_results_scaffold(data), encoding="utf-8")
     technical.write_text(text, encoding="utf-8")
-    return [portfolio, manuscript, technical]
+    return [research, manuscript, technical]

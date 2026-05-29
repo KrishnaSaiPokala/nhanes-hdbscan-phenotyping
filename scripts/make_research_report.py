@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate portfolio-grade tables, figures, and reports from aggregate results JSON."""
+"""Generate research tables, figures, and reports from aggregate results JSON."""
 
 from __future__ import annotations
 

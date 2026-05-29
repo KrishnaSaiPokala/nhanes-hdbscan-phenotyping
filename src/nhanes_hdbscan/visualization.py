@@ -1,5 +1,5 @@
 
-"""Portfolio and manuscript figure generation."""
+"""Research and manuscript figure generation."""
 
 from __future__ import annotations
 

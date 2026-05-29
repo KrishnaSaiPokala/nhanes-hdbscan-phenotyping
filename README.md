@@ -1,6 +1,6 @@
 # NHANES-HDBSCAN Cardiometabolic Phenotyping
 
-Recruiter-facing, reproducible research software for unsupervised cardiometabolic biomarker phenotyping in U.S. adults using public NHANES data.
+Reproducible research software for unsupervised cardiometabolic biomarker phenotyping in U.S. adults using public NHANES data.
 
 ## Project identity
 
@@ -16,9 +16,9 @@ NHANES biomarkers
 → stability, ablation, replication, and enrichment analysis
 ```
 
-The public portfolio repository emphasizes maintainable modular code, reproducible aggregate reporting, figures, and manuscript-ready summaries. Raw NHANES data are not redistributed.
+The public research-software repository emphasizes maintainable modular code, reproducible aggregate reporting, figures, and manuscript-ready summaries. Raw NHANES data are not redistributed.
 
-## Generate the portfolio report
+## Generate the research report
 
 Place the aggregate result JSON at:
 
@@ -29,14 +29,14 @@ results/summary/nhanes_hdbscan_results_v2_plus.json
 Then run:
 
 ```bash
-python scripts/make_portfolio_report.py
+python scripts/make_research_report.py
 ```
 
 Generated outputs:
 
-- `figures/` — portfolio and manuscript figures
+- `figures/` — research and manuscript figures
 - `tables/` — normalized aggregate tables
-- `docs/portfolio_results_summary.md` — recruiter-facing interpretation
+- `docs/research_results_summary.md` — research interpretation
 - `manuscript/results_scaffold.md` — manuscript results starting point
 - `results/summary/technical_summary.md` — technical summary
 

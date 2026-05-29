@@ -1,6 +1,6 @@
 # NHANES-HDBSCAN Cardiometabolic Phenotyping
 
-Recruiter-facing, reproducible research software project for unsupervised cardiometabolic biomarker phenotyping in U.S. adults using public NHANES data.
+Reproducible research software project for unsupervised cardiometabolic biomarker phenotyping in U.S. adults using public NHANES data.
 
 ## Headline result
 
@@ -11,9 +11,9 @@ Recruiter-facing, reproducible research software project for unsupervised cardio
 - Mean pairwise NMI: **0.9885**
 - Mean non-noise silhouette: **0.9168**
 
-## Why this is portfolio-grade
+## Why this is reproducible research software
 
-This repository demonstrates a complete applied ML/research workflow: public data, clinical feature engineering, unsupervised representation learning, density-based clustering, multi-seed stability analysis, feature-block ablations, temporal replication, post-hoc disease-burden characterization, and manuscript-style reporting.
+This repository demonstrates a complete applied machine-learning and research workflow: public data, clinical feature engineering, unsupervised representation learning, density-based clustering, multi-seed stability analysis, feature-block ablations, temporal replication, post-hoc disease-burden characterization, and manuscript-style reporting.
 
 Disease labels, survey weights, and demographic/socioeconomic variables are not used to create the primary clusters. They are used only after clustering for interpretation and enrichment.
 
