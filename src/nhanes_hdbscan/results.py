@@ -12,8 +12,15 @@ import pandas as pd
 from nhanes_hdbscan.config import BIOMARKER_COLUMNS, BIOMARKER_DISPLAY, PHENOTYPE_NAMES
 
 REQUIRED_KEYS = {
-    "project", "final_selected_params", "selection_row", "stability", "final_seed_rows",
-    "phenotype_profiles", "disease_enrichment", "ablation_summary", "best_replication_matches",
+    "project",
+    "final_selected_params",
+    "selection_row",
+    "stability",
+    "final_seed_rows",
+    "phenotype_profiles",
+    "disease_enrichment",
+    "ablation_summary",
+    "best_replication_matches",
 }
 
 

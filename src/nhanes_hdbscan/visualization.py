@@ -1,4 +1,3 @@
-
 """Research and manuscript figure generation."""
 
 from __future__ import annotations
@@ -20,13 +19,15 @@ from nhanes_hdbscan.results import (
     replication_matches,
 )
 
-plt.rcParams.update({
-    "figure.autolayout": True,
-    "axes.spines.top": False,
-    "axes.spines.right": False,
-    "axes.titleweight": "bold",
-    "font.size": 10,
-})
+plt.rcParams.update(
+    {
+        "figure.autolayout": True,
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+        "axes.titleweight": "bold",
+        "font.size": 10,
+    }
+)
 
 
 def save(fig: plt.Figure, path: Path, dpi: int) -> Path:
@@ -43,7 +44,11 @@ def annotate_bars(ax: plt.Axes, fmt: str) -> None:
             ax.annotate(
                 fmt.format(height),
                 (patch.get_x() + patch.get_width() / 2, height),
-                ha="center", va="bottom", fontsize=8, xytext=(0, 2), textcoords="offset points",
+                ha="center",
+                va="bottom",
+                fontsize=8,
+                xytext=(0, 2),
+                textcoords="offset points",
             )
 
 
@@ -62,11 +67,22 @@ def plot_pipeline(figures_dir: Path, cfg: PortfolioConfig) -> Path:
     ax.axis("off")
     xs = np.linspace(0.05, 0.95, len(steps))
     for i, (x, label) in enumerate(zip(xs, steps)):
-        ax.text(x, 0.55, label, ha="center", va="center", fontsize=8,
-                bbox=dict(boxstyle="round,pad=0.35", facecolor="white", edgecolor="black"))
+        ax.text(
+            x,
+            0.55,
+            label,
+            ha="center",
+            va="center",
+            fontsize=8,
+            bbox=dict(boxstyle="round,pad=0.35", facecolor="white", edgecolor="black"),
+        )
         if i < len(steps) - 1:
-            ax.annotate("", xy=(xs[i + 1] - 0.045, 0.55), xytext=(x + 0.045, 0.55),
-                        arrowprops=dict(arrowstyle="->", lw=1.2))
+            ax.annotate(
+                "",
+                xy=(xs[i + 1] - 0.045, 0.55),
+                xytext=(x + 0.045, 0.55),
+                arrowprops=dict(arrowstyle="->", lw=1.2),
+            )
     ax.set_title("Reproducible NHANES-HDBSCAN phenotyping workflow")
     return save(fig, figures_dir / "pipeline_diagram.png", cfg.dpi)
 
@@ -125,13 +141,17 @@ def plot_biomarker_heatmap(data: dict[str, Any], figures_dir: Path, cfg: Portfol
     for i in range(mat.shape[0]):
         for j in range(mat.shape[1]):
             val = mat.iloc[i, j]
-            ax.text(j, i, "NA" if pd.isna(val) else f"{val:.1f}", ha="center", va="center", fontsize=7)
+            ax.text(
+                j, i, "NA" if pd.isna(val) else f"{val:.1f}", ha="center", va="center", fontsize=7
+            )
     return save(fig, figures_dir / "phenotype_biomarker_heatmap.png", cfg.dpi)
 
 
 def plot_disease_lift(data: dict[str, Any], figures_dir: Path, cfg: PortfolioConfig) -> Path:
     df = disease_enrichment(data)
-    pivot = df.pivot_table(index="outcome", columns="display_name", values="lift_vs_overall", aggfunc="mean").sort_index()
+    pivot = df.pivot_table(
+        index="outcome", columns="display_name", values="lift_vs_overall", aggfunc="mean"
+    ).sort_index()
     fig, ax = plt.subplots(figsize=(13, 8))
     im = ax.imshow(pivot.to_numpy(dtype=float), aspect="auto", cmap="RdBu_r", vmin=0.5, vmax=1.5)
     ax.set_xticks(np.arange(pivot.shape[1]))
@@ -144,7 +164,9 @@ def plot_disease_lift(data: dict[str, Any], figures_dir: Path, cfg: PortfolioCon
     for i in range(pivot.shape[0]):
         for j in range(pivot.shape[1]):
             val = pivot.iloc[i, j]
-            ax.text(j, i, "NA" if pd.isna(val) else f"{val:.2f}", ha="center", va="center", fontsize=7)
+            ax.text(
+                j, i, "NA" if pd.isna(val) else f"{val:.2f}", ha="center", va="center", fontsize=7
+            )
     return save(fig, figures_dir / "disease_enrichment_lift_heatmap.png", cfg.dpi)
 
 

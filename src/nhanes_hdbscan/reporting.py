@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from nhanes_hdbscan.config import PHENOTYPE_NAMES, PortfolioConfig
+from nhanes_hdbscan.config import PHENOTYPE_NAMES, ResearchConfig
 from nhanes_hdbscan.results import (
     ablation_summary,
     disease_enrichment,
@@ -16,15 +16,18 @@ from nhanes_hdbscan.results import (
 
 
 def pct(x: float, digits: int = 1) -> str:
+    """Format a proportion as a percentage."""
     return f"{100 * float(x):.{digits}f}%"
 
 
 def num(x: float, digits: int = 3) -> str:
+    """Format a numeric value with fixed decimal precision."""
     return f"{float(x):.{digits}f}"
 
 
 def research_markdown(data: dict[str, Any], figure_paths: list[Path]) -> str:
-    m = key_metrics(data)
+    """Build the public research-results summary."""
+    metrics = key_metrics(data)
     profiles = phenotype_profiles(data)
     enrich = disease_enrichment(data).sort_values("lift_vs_overall", ascending=False)
     replication = replication_matches(data)
@@ -36,12 +39,12 @@ def research_markdown(data: dict[str, Any], figure_paths: list[Path]) -> str:
         "",
         "## Headline result",
         "",
-        f"- Discovery cohort: **{m['n']:,} adults**",
-        f"- Final solution: **{m['n_clusters']} HDBSCAN clusters plus a noise/outlier group**",
-        f"- Mean noise rate: **{pct(m['noise_rate'], 2)}**",
-        f"- Mean pairwise ARI: **{num(m['ari'], 4)}**",
-        f"- Mean pairwise NMI: **{num(m['nmi'], 4)}**",
-        f"- Mean non-noise silhouette: **{num(m['silhouette'], 4)}**",
+        f"- Discovery cohort: **{metrics['n']:,} adults**",
+        f"- Final solution: **{metrics['n_clusters']} HDBSCAN clusters plus a noise/outlier group**",
+        f"- Mean noise rate: **{pct(metrics['noise_rate'], 2)}**",
+        f"- Mean pairwise ARI: **{num(metrics['ari'], 4)}**",
+        f"- Mean pairwise NMI: **{num(metrics['nmi'], 4)}**",
+        f"- Mean non-noise silhouette: **{num(metrics['silhouette'], 4)}**",
         "",
         "## Why this is reproducible research software",
         "",
@@ -51,11 +54,11 @@ def research_markdown(data: dict[str, Any], figure_paths: list[Path]) -> str:
         "",
         "## Final selected model",
         "",
-        f"- HDBSCAN `min_cluster_size`: **{m['min_cluster_size']}**",
-        f"- HDBSCAN `min_samples`: **{m['min_samples']}**",
-        f"- SVD components requested: **{m['svd_components']}**",
-        f"- UMAP components: **{m['umap_components']}**",
-        f"- UMAP neighbors: **{m['umap_neighbors']}**",
+        f"- HDBSCAN `min_cluster_size`: **{metrics['min_cluster_size']}**",
+        f"- HDBSCAN `min_samples`: **{metrics['min_samples']}**",
+        f"- SVD components requested: **{metrics['svd_components']}**",
+        f"- UMAP components: **{metrics['umap_components']}**",
+        f"- UMAP neighbors: **{metrics['umap_neighbors']}**",
         "",
         "## Phenotype summary",
         "",
@@ -98,9 +101,7 @@ def research_markdown(data: dict[str, Any], figure_paths: list[Path]) -> str:
         )
 
     lines += ["", "## Generated figures", ""]
-    for p in figure_paths:
-        lines.append(f"- `{p.as_posix()}`")
-
+    lines.extend(f"- `{path.as_posix()}`" for path in figure_paths)
     lines += [
         "",
         "## Claim discipline",
@@ -112,7 +113,8 @@ def research_markdown(data: dict[str, Any], figure_paths: list[Path]) -> str:
 
 
 def manuscript_results_scaffold(data: dict[str, Any]) -> str:
-    m = key_metrics(data)
+    """Build a concise manuscript-results scaffold from aggregate outputs."""
+    metrics = key_metrics(data)
     profiles = phenotype_profiles(data)
     replication = replication_matches(data)
     ablations = ablation_summary(data)
@@ -122,7 +124,7 @@ def manuscript_results_scaffold(data: dict[str, Any]) -> str:
         "",
         "## Clustering solution and stability",
         "",
-        f"The final discovery analysis included {m['n']:,} adults and identified {m['n_clusters']} non-noise HDBSCAN phenotypes plus an algorithmic noise/outlier group. Across final seeds, the mean pairwise ARI was {m['ari']:.4f} and the mean pairwise NMI was {m['nmi']:.4f}. The mean noise rate was {100 * m['noise_rate']:.2f}%.",
+        f"The final discovery analysis included {metrics['n']:,} adults and identified {metrics['n_clusters']} non-noise HDBSCAN phenotypes plus an algorithmic noise/outlier group. Across final seeds, the mean pairwise ARI was {metrics['ari']:.4f} and the mean pairwise NMI was {metrics['nmi']:.4f}. The mean noise rate was {100 * metrics['noise_rate']:.2f}%.",
         "",
         "## Phenotype characterization",
         "",
@@ -163,10 +165,11 @@ def manuscript_results_scaffold(data: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def write_reports(data: dict[str, Any], cfg: PortfolioConfig, figure_paths: list[Path]) -> list[Path]:
-    cfg.docs_dir.mkdir(parents=True, exist_ok=True)
-    cfg.manuscript_dir.mkdir(parents=True, exist_ok=True)
-    cfg.summary_dir.mkdir(parents=True, exist_ok=True)
+def write_reports(
+    data: dict[str, Any], cfg: ResearchConfig, figure_paths: list[Path]
+) -> list[Path]:
+    """Write research summary, manuscript scaffold, and technical summary."""
+    cfg.ensure_output_dirs()
     research = cfg.docs_dir / "research_results_summary.md"
     manuscript = cfg.manuscript_dir / "results_scaffold.md"
     technical = cfg.summary_dir / "technical_summary.md"

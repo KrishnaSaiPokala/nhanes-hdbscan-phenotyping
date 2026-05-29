@@ -1,4 +1,4 @@
-"""Project configuration and constants."""
+"""Project configuration and scientific constants."""
 
 from __future__ import annotations
 
@@ -16,9 +16,20 @@ PHENOTYPE_NAMES = {
 }
 
 BIOMARKER_COLUMNS = [
-    "age_mean", "bmi_mean", "waist_cm_mean", "mean_sbp_mean", "mean_dbp_mean",
-    "hba1c_mean", "glucose_mean", "triglycerides_mean", "hdl_mean", "ldl_mean",
-    "egfr_mean", "uacr_mean", "hscrp_mean", "wbc_mean",
+    "age_mean",
+    "bmi_mean",
+    "waist_cm_mean",
+    "mean_sbp_mean",
+    "mean_dbp_mean",
+    "hba1c_mean",
+    "glucose_mean",
+    "triglycerides_mean",
+    "hdl_mean",
+    "ldl_mean",
+    "egfr_mean",
+    "uacr_mean",
+    "hscrp_mean",
+    "wbc_mean",
 ]
 
 BIOMARKER_DISPLAY = {
@@ -38,9 +49,20 @@ BIOMARKER_DISPLAY = {
     "wbc_mean": "WBC",
 }
 
+FEATURE_BLOCKS = {
+    "anthropometry": ["bmi_mean", "waist_cm_mean"],
+    "blood_pressure": ["mean_sbp_mean", "mean_dbp_mean"],
+    "glycemia": ["hba1c_mean", "glucose_mean"],
+    "lipids": ["triglycerides_mean", "hdl_mean", "ldl_mean"],
+    "renal": ["egfr_mean", "uacr_mean"],
+    "inflammation": ["hscrp_mean", "wbc_mean"],
+    "age": ["age_mean"],
+}
+
+
 @dataclass(frozen=True)
-class PortfolioConfig:
-    """Filesystem configuration for report generation."""
+class ResearchConfig:
+    """Filesystem configuration for reproducible report generation."""
 
     results_json: Path = Path("results/summary/nhanes_hdbscan_results_v2_plus.json")
     figures_dir: Path = Path("figures")
@@ -49,3 +71,18 @@ class PortfolioConfig:
     manuscript_dir: Path = Path("manuscript")
     summary_dir: Path = Path("results/summary")
     dpi: int = 220
+
+    def ensure_output_dirs(self) -> None:
+        """Create all output directories used by the reporting workflow."""
+        for directory in (
+            self.figures_dir,
+            self.tables_dir,
+            self.docs_dir,
+            self.manuscript_dir,
+            self.summary_dir,
+        ):
+            directory.mkdir(parents=True, exist_ok=True)
+
+
+# Backward-compatible alias for earlier release code and notebooks.
+PortfolioConfig = ResearchConfig

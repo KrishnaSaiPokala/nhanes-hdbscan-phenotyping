@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software or derived aggregate outputs, please cite this repository."
+title: "NHANES-HDBSCAN Cardiometabolic Phenotyping"
+type: software
+authors:
+  - family-names: "Pokala"
+    given-names: "Krishna Sai"
+version: "0.1.0"
+date-released: "2026-05-29"
+repository-code: "https://github.com/KrishnaSaiPokala/nhanes-hdbscan-phenotyping"
+license: "MIT"
+keywords:
+  - NHANES
+  - HDBSCAN
+  - UMAP
+  - cardiometabolic phenotyping
+  - reproducible research
