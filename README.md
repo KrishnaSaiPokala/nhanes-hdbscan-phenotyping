@@ -48,7 +48,7 @@ scripts/                Command-line entry points
 configs/                Reproducible run configurations
 figures/                Generated visual summaries
 tables/                 Generated aggregate tables
-docs/                   Portfolio documentation
+docs/                   Research documentation
 manuscript/             Manuscript scaffolds
 results/summary/        Small aggregate result exports only
 ```
