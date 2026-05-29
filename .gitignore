@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+conda-env/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Raw/downloaded NHANES data
+data/raw/
+raw/
+*.XPT
+*.xpt
+
+# Large/generated outputs
+outputs*/
+results/raw/
+results/intermediate/
+*.joblib
+*.pkl
+*.pickle
+
+# Logs
+*.log
+logs/
+
+# Local secrets/configs
+.env
+.env.*
+secrets/
+*.token
+hosts.yml
+
+# Temporary files
+tmp/
+temp/
+*.bak
+*.zip
