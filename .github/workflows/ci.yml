@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,5 +18,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
+      - name: Check formatting
+        run: python -m black --check src scripts tests
+      - name: Lint
+        run: python -m ruff check src scripts tests
       - name: Run tests
         run: python -m pytest -q
+      - name: Verify report generation
+        env:
+          MPLBACKEND: Agg
+        run: python scripts/make_research_report.py
