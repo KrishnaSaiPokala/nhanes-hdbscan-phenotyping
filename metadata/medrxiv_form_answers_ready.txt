@@ -1,0 +1,16 @@
+medRxiv form helper - v6 polished
+
+Scope screen: Clinical research article with new results
+Subject area: Epidemiology (preferred). Alternatives if offered: Public Health; Health Informatics; Cardiovascular Medicine; Endocrinology/Metabolism.
+Title: Stable label-free cardiometabolic biomarker phenotypes in US adults
+Authors: Krishna Sai Pokala
+Corresponding author email: ok50250@umbc.edu
+Author approval: All authors have seen and approved the manuscript. Single-author manuscript.
+Competing interests: The author declares no competing interests.
+Funding: No external funding was received.
+Data availability statement: NHANES public-use data are available from the National Center for Health Statistics. Raw NHANES source files are not redistributed. Aggregate derived tables and figures are included in the submission package and public repository.
+Data availability link: https://github.com/KrishnaSaiPokala/nhanes-hdbscan-phenotyping
+Clinical protocols: Not applicable. This is a secondary analysis of de-identified public-use NHANES data and does not report a clinical trial or interventional protocol.
+Ethics/declarations: This analysis used de-identified public-use NHANES data. No individual-level identifiable data are redistributed. The manuscript does not report a clinical trial and does not provide diagnostic or treatment recommendations.
+Distribution/reuse option: CC BY or CC BY-NC, depending on author preference. CC BY maximizes reuse; CC BY-NC restricts commercial reuse.
+Files to upload: Main manuscript PDF as the manuscript file; supplement PDF as supplemental file. Optional CSV table zip only if medRxiv allows/desired.

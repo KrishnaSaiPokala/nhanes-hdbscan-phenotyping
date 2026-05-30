@@ -28,3 +28,5 @@ jobs:
         env:
           MPLBACKEND: Agg
         run: python scripts/make_research_report.py
+      - name: Verify preprint release files
+        run: python scripts/verify_preprint_release.py

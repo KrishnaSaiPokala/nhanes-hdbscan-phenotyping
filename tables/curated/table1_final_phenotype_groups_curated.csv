@@ -1,0 +1,5 @@
+Label,N,Percent,Interpretation,Boundary
+-1,447,7.4%,Algorithmic noise/outlier group,Observations not assigned to dense non-noise regions
+0,"2,998",49.6%,Lipid-prediabetes metabolic-risk tendency,"Descriptive enrichment pattern, not a diagnostic class"
+1,"2,258",37.3%,Lower-glycemic central-adiposity tendency,Central adiposity with comparatively lower glycemic burden
+2,345,5.7%,Higher blood-pressure/renal-risk tendency,Smaller dense region with BP/renal-risk signals

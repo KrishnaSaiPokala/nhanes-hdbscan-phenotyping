@@ -1,0 +1,20 @@
+{
+  "title": "NHANES-HDBSCAN cardiometabolic phenotyping",
+  "creators": [
+    {
+      "name": "Pokala, Krishna Sai"
+    }
+  ],
+  "description": "Reproducible research software and aggregate reporting artifacts for label-free cardiometabolic biomarker phenotyping in US adults using public NHANES data.",
+  "license": "MIT",
+  "keywords": [
+    "NHANES",
+    "HDBSCAN",
+    "UMAP",
+    "cardiometabolic phenotyping",
+    "unsupervised learning",
+    "reproducible research"
+  ],
+  "upload_type": "software",
+  "access_right": "open"
+}
