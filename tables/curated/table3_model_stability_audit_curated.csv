@@ -1,0 +1,9 @@
+Domain,Value
+Discovery cohort,"6,048 adults"
+Selected configuration,"SVD 75 requested; UMAP 10 components, 50 neighbors; HDBSCAN min cluster size 300, min samples 50"
+Final solution,3 non-noise phenotypes plus algorithmic noise/outlier group
+Mean pairwise ARI,0.9935
+Mean pairwise NMI,0.9885
+Mean noise rate,7.10%
+Most destabilizing ablation,Remove lipids (mean ARI vs full objective reference 0.263)
+Temporal profile matching,Best-match profile correlations 0.714 to 0.909

@@ -1,9 +1,11 @@
 # Changelog
 
-## v0.1.0
+## v1.0.0-preprint - 2026-05-30
 
-Initial reproducible research-software release.
-
-- Adds modular utilities for data access, cleaning, feature engineering, preprocessing, embedding, clustering, stability, ablation, enrichment, replication, visualization, and reporting.
-- Adds generated aggregate tables and manuscript-ready figures from the final NHANES-HDBSCAN analysis outputs.
-- Adds research-results summary, manuscript results scaffold, tests, citation metadata, license, Makefile, and CI workflow.
+- Added final medRxiv-ready manuscript and supplementary material PDFs.
+- Updated README to match final title, results, figure set, and interpretation boundary.
+- Added final main and extended-data figures in PNG/PDF/SVG formats.
+- Added curated tables used in the submission package.
+- Added data availability, leakage-control, results-audit, reproducibility, known-limitations, and preprint-status documentation.
+- Updated citation metadata for repository/preprint release.
+- Preserved claim discipline: findings are exploratory and descriptive, not diagnostic, causal, or treatment-directing.

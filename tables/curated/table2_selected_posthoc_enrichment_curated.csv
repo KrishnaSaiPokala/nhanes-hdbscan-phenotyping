@@ -1,0 +1,11 @@
+Phenotype,Outcome,Weighted estimate (95% CI),Overall,Lift
+Higher blood-pressure/renal-risk tendency,Albuminuria,0.160 (0.110-0.200),0.101,1.58
+Lipid-prediabetes metabolic-risk tendency,Prediabetes,0.499 (0.477-0.520),0.370,1.35
+Higher blood-pressure/renal-risk tendency,Diabetes,0.179 (0.137-0.226),0.149,1.20
+Higher blood-pressure/renal-risk tendency,CVD self-report,0.114 (0.085-0.150),0.096,1.19
+Algorithmic noise/outlier group,Albuminuria,0.117 (0.086-0.154),0.101,1.15
+Lipid-prediabetes metabolic-risk tendency,MetS components,1.976 (1.917-2.032),1.747,1.13
+Higher blood-pressure/renal-risk tendency,Hypertension,0.573 (0.500-0.638),0.506,1.13
+Higher blood-pressure/renal-risk tendency,CKD risk,0.160 (0.110-0.200),0.141,1.13
+Lipid-prediabetes metabolic-risk tendency,Diabetes,0.164 (0.150-0.178),0.149,1.10
+Lower-glycemic central-adiposity tendency,Central obesity,0.598 (0.574-0.620),0.558,1.07

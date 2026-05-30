@@ -1,12 +1,12 @@
 cff-version: 1.2.0
-message: "If you use this software or derived aggregate outputs, please cite this repository."
-title: "NHANES-HDBSCAN Cardiometabolic Phenotyping"
+message: "If you use this software or aggregate reporting package, please cite this repository and the associated preprint once a DOI is available."
+title: "NHANES-HDBSCAN cardiometabolic phenotyping"
 type: software
 authors:
   - family-names: "Pokala"
     given-names: "Krishna Sai"
-version: "0.1.0"
-date-released: "2026-05-29"
+version: "1.0.0"
+date-released: "2026-05-30"
 repository-code: "https://github.com/KrishnaSaiPokala/nhanes-hdbscan-phenotyping"
 license: "MIT"
 keywords:
@@ -14,4 +14,13 @@ keywords:
   - HDBSCAN
   - UMAP
   - cardiometabolic phenotyping
+  - unsupervised learning
   - reproducible research
+preferred-citation:
+  type: article
+  title: "Stable label-free cardiometabolic biomarker phenotypes in US adults"
+  authors:
+    - family-names: "Pokala"
+      given-names: "Krishna Sai"
+  year: 2026
+  repository-code: "https://github.com/KrishnaSaiPokala/nhanes-hdbscan-phenotyping"
